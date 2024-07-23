@@ -25,7 +25,7 @@ async function execute() {
 
   app.get('/api/users/:userId/cart', async (req, res) => {
     const user = await db.collection('users').findOne({ id: req.params.userId });
-    const populatedCart = await populatedCartIds(user.cartItems);
+    const populatedCart = await populatedCartIds(user?.cartItems || []);
     res.json(populatedCart);
   });
 
@@ -44,7 +44,7 @@ async function execute() {
     });
 
     const user = await db.collection('users').findOne({ id: req.params.userId });
-    const populatedCart = await populatedCartIds(user.cartItems);
+    const populatedCart = await populatedCartIds(user?.cartItems || []);
     res.json(populatedCart);
   });
 
@@ -57,7 +57,7 @@ async function execute() {
     })
 
     const user = await db.collection('users').findOne({ id: req.params.userId });
-    const populatedCart = await populatedCartIds(user.cartItems);
+    const populatedCart = await populatedCartIds(user?.cartItems || []);
     res.json(populatedCart);
   });
 
